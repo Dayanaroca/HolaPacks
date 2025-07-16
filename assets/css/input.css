@@ -3,3 +3,79 @@
 @tailwind utilities;
 
 /* Estilos adicionales */
+@layer components {
+    header {
+        position: relative; 
+        z-index: 40;
+    }
+
+    /* Borde gradiente - visible en tablet y móvil */
+    header::after, #mobile-menu::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.47) 0%, rgba(0, 0, 0, 0) 100%);
+        z-index: 10;
+    }
+
+    /* Menú hamburguesa visible desde tablet (lg breakpoint) hacia abajo */
+    @media (max-width: 1023px) {
+        #primary-menu {
+            display: none;
+        }
+        #menu-toggle {
+            display: block;
+        }
+        header::after {
+            display: none;
+        }
+    }
+
+    /* Estilos del menú móvil para tablet y móvil */
+    #mobile-menu {
+        position: fixed;
+        top: 5.5rem; /* Ajusta según la altura de tu header */
+        left: 0;
+        right: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 30;
+        background: white;
+        width: 100%;
+    }
+
+    #mobile-menu:not(.hidden) {
+        max-height: calc(100vh - 5.5rem);
+        border-top: 2px solid #e5e7eb;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        display: block;
+    }
+
+    /* Mejoras de accesibilidad */
+    [role="menuitem"]:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+
+    /* Estilos para el walker accesible */
+    .menu-item-has-children > a::after {
+        content: "▼";
+        margin-left: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    #menu-toggle svg {
+        transition: transform 0.3s ease;
+    }
+
+    /* Estilos específicos para móvil */
+    @media (max-width: 767px) {
+        .site-logo img {
+            max-height: 40px !important;
+            width: auto !important;
+        }
+    }
+}
