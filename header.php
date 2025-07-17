@@ -49,7 +49,6 @@
   <link rel="preload" href="<?php echo get_theme_file_uri('/assets/css/input.css'); ?>" as="style">
   <link rel="preload" href="<?php echo get_theme_file_uri('/assets/js/scripts.js'); ?>" as="script">
 
-
   <?php wp_head(); ?>
 </head>
 
@@ -217,6 +216,3 @@
       </div>
     </div>
   </header>
-
-          
-  <main id="main-content" class="relative z-0">

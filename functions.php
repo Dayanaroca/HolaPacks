@@ -4,6 +4,25 @@ function drdev_enqueue_assets() {
     wp_enqueue_style('drdev-style', get_template_directory_uri() . '/dist/style.css', [], filemtime(get_template_directory() . '/dist/style.css'));
     
     wp_enqueue_script('drdev-script', get_template_directory_uri() . '/assets/js/scripts.js', [], false, true);
+
+        if(is_front_page() || is_page_template('template-hero.php')) {
+        // CSS
+        wp_enqueue_style(
+            'swiper-css',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+            array(),
+            '11.0.0'
+        );
+        
+        // JS
+        wp_enqueue_script(
+            'swiper-js',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+            array(),
+            '11.0.0',
+            true // true = carga en footer
+        );
+    }
 }
 add_action('wp_enqueue_scripts', 'drdev_enqueue_assets');
 
