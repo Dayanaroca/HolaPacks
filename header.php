@@ -52,12 +52,12 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('bg-white text-gray-900 antialiased'); ?>>
+<body <?php body_class('bg-white text-gray-900 antialiased font-sans'); ?>>
   <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50 focus:underline" href="#main-content">
     <?php esc_html_e('Saltar al contenido', 'text-domain'); ?>
   </a>
   <header class="bg-white">
-   <div class="flex justify-between items-center mx-auto px-4 py-4 md:max-w-[1440px] md:px-6 md:py-[22px]">
+   <div class="flex justify-between items-center mx-auto px-4 py-4 md:px-6 md:py-[22px]">
 
        <!-- Logo (centrado en móvil) -->
       <div class="order-2 md:order-none mx-auto md:mx-0">

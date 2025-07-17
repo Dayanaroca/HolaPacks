@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        sans: ['Montserrat', 'sans-serif'],
       },
        colors: {
         primary: '#0D6A68',
@@ -22,4 +22,3 @@ module.exports = {
   },
   plugins: [],
 }
-

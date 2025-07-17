@@ -78,41 +78,66 @@
             width: auto !important;
         }
     }
-}
 
-/* hero section home */
+    /* hero section home */
   .hero-slider .swiper-pagination-bullet {
-    width: 6px;
-    height: 6px;
-    background: #D9D9D9;
-    opacity: 1;
-     margin: 0 !important; /* Elimina márgenes por defecto */
-  transition: all 0.3s ease;
-  }
+        width: 6px;
+        height: 6px;
+        background: #D9D9D9;
+        opacity: 1;
+        margin: 0 !important; /* Elimina márgenes por defecto */
+        transition: all 0.3s ease;
+    }
   .hero-slider .swiper-pagination-bullet-active {
-    background: theme('colors.primary');
-     width: 10px;
-    height: 10px;
-    position: relative;
+        background: theme('colors.primary');
+        width: 10px;
+        height: 10px;
+        position: relative;
+    }
+    .hero-bg {
+        background-image: url('../assets/image/bg-hero.webp');
+    }
+    .hero-bg-one {
+        background-image: url('../assets/image/bg-hero-one.webp');
+    }
+
+    @media (max-width: 1024px) {
+        .hero-bg {
+        background-image: url('../assets/image/bg-hero-tablet.webp');
+        }
+        .hero-bg-one {
+        background-image: url('../assets/image/bg-hero-tablet-one.webp');
+        }
+    }
+
+    @media (max-width: 640px) {
+        .hero-bg {
+        background-image: url('../assets/image/bg-hero-mobile.webp');
+        }
+        .hero-bg-one {
+        background-image: url('../assets/image/bg-hero-mobile-one.webp');
+        }
+    }
+
+    /* Borde blanco despegado */
+    .hero-slider .swiper-pagination-bullet-active::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 2px solid white;
+        border-radius: 50%;
+        z-index: -1;
+    }
+    
+    .hero-slider .swiper-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px; 
+        height: 20px; 
+    }
 }
 
-/* Borde blanco despegado */
-.hero-slider .swiper-pagination-bullet-active::after {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
-  border: 2px solid white;
-  border-radius: 50%;
-  z-index: -1;
-}
-  
-.hero-slider .swiper-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px; 
-  height: 20px; 
-}
