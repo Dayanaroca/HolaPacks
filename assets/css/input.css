@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos adicionales */
+@layer base {
+  p {
+    @apply text-black text-base sm:text-lg font-normal;
+  }
+
+  strong {
+    @apply text-primary font-black;
+  }
+} 
+
 @layer components {
     header {
         position: relative; 
@@ -100,6 +109,9 @@
     .hero-bg-one {
         background-image: url('../assets/image/bg-hero-one.webp');
     }
+    .about-home-bg {
+         background-image: url('../assets/image/about-home-bg.webp');
+    }
 
     @media (max-width: 1024px) {
         .hero-bg {
@@ -116,6 +128,9 @@
         }
         .hero-bg-one {
         background-image: url('../assets/image/bg-hero-mobile-one.webp');
+        }
+        .about-home-bg {
+         background-image: url('../assets/image/about-home-bg-mobile.webp');
         }
     }
 
