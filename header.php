@@ -6,13 +6,22 @@
 
   <?php
     global $post;
+      $site_name     = get_bloginfo('name');
+      $site_desc     = get_bloginfo('description');
+      $page_desc     = is_singular() && has_excerpt($post->ID) ? get_the_excerpt() : $site_desc;
+      $canonical_url = is_singular() ? get_permalink() : home_url(add_query_arg([], $_SERVER['REQUEST_URI']));
+      $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null, 'full') : get_theme_file_uri('/assets/images/socialMedia/team-hola-packs.jpg');
+      $icon_path = get_theme_file_uri('/assets/images/icons/');
+      $img_path = get_theme_file_uri('/assets/images/');
 
-    // Valores dinámicos
-    $site_name     = get_bloginfo('name');
-    $site_desc     = get_bloginfo('description');
-    $page_desc     = is_singular() && has_excerpt($post->ID) ? get_the_excerpt() : $site_desc;
-    $canonical_url = is_singular() ? get_permalink() : home_url(add_query_arg([], $_SERVER['REQUEST_URI']));
-     $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null, 'full') : get_theme_file_uri('/assets/image/team-hola-packs.jpg');
+      // Icons
+      $favicon_ico     = $icon_path . 'favicon.ico';
+      $favicon_svg     = $icon_path . 'favicon.svg';
+      $apple_touch_icon = $icon_path . 'apple-touch-icon.png';
+      $tel_icon        = $icon_path . 'telefono-hola-packs.svg';
+      $whatsapp_icon   = $icon_path . 'whatsapp-icon.svg';
+      $tracking_bg     = $icon_path . 'fondo-rastrear.svg';
+      $tracking_icon   = $icon_path . 'ico-rastreo.svg';
   ?>
 
   <!-- Meta -->
@@ -36,9 +45,9 @@
   <meta name="twitter:image" content="<?php echo esc_url($image_url); ?>">
 
     <!-- Favicon -->
-  <link rel="icon" href="<?php echo get_theme_file_uri('/assets/images/favicon.ico'); ?>" sizes="any">
-  <link rel="icon" href="<?php echo get_theme_file_uri('/assets/images/favicon.svg'); ?>" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="<?php echo get_theme_file_uri('/assets/images/apple-touch-icon.png'); ?>">
+  <link rel="icon" href="<?php echo $favicon_ico; ?>" sizes="any">
+  <link rel="icon" href="<?php echo $favicon_svg; ?>" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="<?php echo $apple_touch_icon; ?>">
   <meta name="theme-color" content="#1e40af">
 
     <!-- Google Fonts preload -->
@@ -96,9 +105,9 @@
            <a href="#"
           onclick="openTrackingPopup()" 
           class="order-3 md:hidden relative flex items-center justify-center w-[82px] h-[39px] md:w-[127px] md:h-[59px] text-center font-montserrat "
-          style="background-image: url('<?php echo get_theme_file_uri('/assets/image/fondo-rastrear.svg'); ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+          style="background-image: url('<?php echo  $tracking_bg; ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;">
 
-          <img src="<?php echo get_theme_file_uri('/assets/image/ico-rastreo.svg'); ?>" alt="Rastrear" class="w-[20px] h-[20px]" />
+          <img src="<?php echo $tracking_icon; ?>" alt="Rastrear" class="w-[20px] h-[20px]" role="presentation"/>
             <span class="text-[#0D6A68] text-[9.054px] font-bold leading-[8.407px] ml-1 md:text-[14px] md:leading-[13px]">
               Rastrear<br>tu envío
             </span>
@@ -114,14 +123,14 @@
       <?php if ($phone): ?>
         <div class="hidden md:flex items-center gap-8 px-8">
           <div class="flex items-center gap-2">
-            <img src="<?php echo get_theme_file_uri('/assets/image/telefono-hola-packs.svg'); ?>" alt="" 
+            <img src="<?php echo $tel_icon; ?>" alt="" 
               aria-hidden="true" class="h-8 w-8">
             <a href="tel:<?php echo esc_attr($phone); ?>" class="text-primary font-bold text-[12px] font-montserrat hover:underline">
               <?php echo esc_html($phone); ?>
             </a>
           </div>
           <div class="flex items-center gap-2">
-            <img src="<?php echo get_theme_file_uri('/assets/image/whatsapp-icon.svg'); ?>" alt="" 
+            <img src="<?php echo $whatsapp_icon; ?>" alt="" 
               aria-hidden="true" class="h-8 w-8">
             <a href="https://wa.me/<?php echo esc_attr($ws); ?>" target="_blank" rel="noopener noreferrer" class="text-primary font-bold text-[12px] font-montserrat">
               <?php echo esc_html($ws); ?>
@@ -136,10 +145,10 @@
           <a href="#"
           onclick="openTrackingPopup()" 
           class="relative flex items-center justify-center w-[127px] h-[59px] text-center font-montserrat "
-          style="background-image: url('<?php echo get_theme_file_uri('/assets/image/fondo-rastrear.svg'); ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;" 
+          style="background-image: url('<?php echo $tracking_bg; ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;" 
           aria-label="<?php esc_attr_e('Rastrear tu envío', 'text-domain'); ?>">
 
-          <img src="<?php echo get_theme_file_uri('/assets/image/ico-rastreo.svg'); ?>" alt="" class="w-[20px] h-[20px]" aria-hidden="true" />
+          <img src="<?php echo $tracking_icon; ?>" alt="" class="w-[20px] h-[20px]" aria-hidden="true" />
             <span class="text-[#0D6A68] text-[14px] font-bold leading-[13px] ml-1">
               <?php esc_html_e('Rastrear', 'text-domain'); ?><br><?php esc_html_e('tu envío', 'text-domain'); ?>
             </span>
@@ -183,7 +192,7 @@
           <div class="flex justify-left items-center pt-8 gap-4">
             <div class="flex items-center gap-2">
               <img 
-                src="<?php echo get_theme_file_uri('/assets/image/telefono-hola-packs.svg'); ?>" 
+                src="<?php echo $tel_icon; ?>" 
                 alt="" 
                 aria-hidden="true"
                 class="h-7 w-7"
@@ -197,7 +206,7 @@
             </div>
             <div class="flex items-center gap-2">
               <img 
-                src="<?php echo get_theme_file_uri('/assets/image/whatsapp-icon.svg'); ?>" 
+                src="<?php echo $whatsapp_icon; ?>" 
                 alt="" 
                 aria-hidden="true"
                 class="h-7 w-7"

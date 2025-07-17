@@ -104,33 +104,36 @@
         position: relative;
     }
     .hero-bg {
-        background-image: url('../assets/image/bg-hero.webp');
+        background-image: url('../assets/images/home/bg-hero.webp');
     }
     .hero-bg-one {
-        background-image: url('../assets/image/bg-hero-one.webp');
+        background-image: url('../assets/images/home/bg-hero-one.webp');
     }
     .about-home-bg {
-         background-image: url('../assets/image/about-home-bg.webp');
+         background-image: url('../assets/images/home/about-home-bg.webp');
+    }
+     .description-home-bg {
+         background-image: url('../assets/images/home/description-home-bg.webp');
     }
 
     @media (max-width: 1024px) {
         .hero-bg {
-        background-image: url('../assets/image/bg-hero-tablet.webp');
+        background-image: url('../assets/images/home/bg-hero-tablet.webp');
         }
         .hero-bg-one {
-        background-image: url('../assets/image/bg-hero-tablet-one.webp');
+        background-image: url('../assets/images/home/bg-hero-tablet-one.webp');
         }
     }
 
     @media (max-width: 640px) {
         .hero-bg {
-        background-image: url('../assets/image/bg-hero-mobile.webp');
+        background-image: url('../assets/images/home/bg-hero-mobile.webp');
         }
         .hero-bg-one {
-        background-image: url('../assets/image/bg-hero-mobile-one.webp');
+        background-image: url('../assets/images/home/bg-hero-mobile-one.webp');
         }
         .about-home-bg {
-         background-image: url('../assets/image/about-home-bg-mobile.webp');
+         background-image: url('../assets/images/home/about-home-bg-mobile.webp');
         }
     }
 
