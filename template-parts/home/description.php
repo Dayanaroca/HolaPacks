@@ -36,7 +36,7 @@
                                 <path d="M19.1875 50.6469L20.375 45.8969H33.4375L32.25 50.6469H19.1875ZM34.625 66.5C32.6458 66.5 30.9635 65.8073 29.5781 64.4219C28.1927 63.0365 27.5 61.3542 27.5 59.375H21.5625L22.75 54.2094H35.0406L37.1781 45.5406H42.1656L45.1344 33.6656H28.6875L29.0437 32.2406C29.2812 31.1323 29.8255 30.2318 30.6766 29.5391C31.5276 28.8464 32.5271 28.5 33.675 28.5H60.75L58.5531 38H65.5L72.625 47.5L70.25 59.375H65.5C65.5 61.3542 64.8073 63.0365 63.4219 64.4219C62.0365 65.8073 60.3542 66.5 58.375 66.5C56.3958 66.5 54.7135 65.8073 53.3281 64.4219C51.9427 63.0365 51.25 61.3542 51.25 59.375H41.75C41.75 61.3542 41.0573 63.0365 39.6719 64.4219C38.2865 65.8073 36.6042 66.5 34.625 66.5ZM23.9375 41.9781L25.125 37.2281H40.5625L39.375 41.9781H23.9375ZM34.625 61.75C35.2979 61.75 35.862 61.5224 36.3172 61.0672C36.7724 60.612 37 60.0479 37 59.375C37 58.7021 36.7724 58.138 36.3172 57.6828C35.862 57.2276 35.2979 57 34.625 57C33.9521 57 33.388 57.2276 32.9328 57.6828C32.4776 58.138 32.25 58.7021 32.25 59.375C32.25 60.0479 32.4776 60.612 32.9328 61.0672C33.388 61.5224 33.9521 61.75 34.625 61.75ZM58.375 61.75C59.0479 61.75 59.612 61.5224 60.0672 61.0672C60.5224 60.612 60.75 60.0479 60.75 59.375C60.75 58.7021 60.5224 58.138 60.0672 57.6828C59.612 57.2276 59.0479 57 58.375 57C57.7021 57 57.138 57.2276 56.6828 57.6828C56.2276 58.138 56 58.7021 56 59.375C56 60.0479 56.2276 60.612 56.6828 61.0672C57.138 61.5224 57.7021 61.75 58.375 61.75ZM55.8219 49.875H67.2812L67.5187 48.6281L63.125 42.75H57.4844L55.8219 49.875Z" fill="#0D6A68"/>
                             </g>
                         </svg>
-                        <h3 class="text-secondary font-black text-2xl sm:text-3xl text-left">Recogida<br />gratuita</h3>
+                        <h3 class="text-secondary font-black text-2xl sm:text-3xl text-left">Recogida<br />Gratuita</h3>
                     </div>
                     <p class="text-white text-base max-w-[85%] font-normal">No te preocupes por llevar tus envíos; nosotros los recogemos sin costo. Nuestro equipo se encargará de pasar por tu ubicación en Estados Unidos para recoger tus paquetes, sin que tengas que preocuparte por el traslado, ahorrando tiempo y esfuerzo. <strong class="text-white">Más accesible y económico para ti</strong>.</p>
                 </div>
@@ -75,7 +75,7 @@
                         </svg>
                         <h3 class="text-secondary font-black text-2xl sm:text-3xl text-left">Precios<br />Competitivos</h3>
                     </div>
-                    <p class="text-white text-base max-w-[85%] font-normal">Ofrecemos tarifas asequibles, <strong class="text-white">desde $1.99 por libra</strong>, para adaptarnos a tu presupuesto. Hemos diseñado nuestras tarifas para ser competitivas y asequibles. Nuestra meta es hacer que el envío a Cuba sea no solo posible, sino también económico y eficiente, asegurando que puedas mantener el contacto con tus seres queridos sin preocuparte por costos excesivos.</p>
+                    <p class="text-white text-base max-w-[85%] font-normal">Ofrecemos tarifas asequibles, <strong class="text-white">desde $1.99 por libra</strong>, para adaptarnos a tu presupuesto. Hemos diseñado nuestras tarifas para ser competitivas y asequibles. Nuestra meta es hacer que el envío a Cuba sea no solo posible, sino también económico y eficiente.</p>
                 </div>
             </div>
         </div>

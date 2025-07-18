@@ -123,9 +123,9 @@
         .hero-bg-one {
         background-image: url('../assets/images/home/bg-hero-tablet-one.webp');
         }
-    }
+/*     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { */
         .hero-bg {
         background-image: url('../assets/images/home/bg-hero-mobile.webp');
         }

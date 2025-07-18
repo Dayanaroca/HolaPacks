@@ -22,6 +22,33 @@ function drdev_enqueue_assets() {
             '11.0.0',
             true // true = carga en footer
         );
+
+       // intl-tel-input CSS
+    wp_enqueue_style(
+        'intl-tel-input-css',
+        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css',
+        array(),
+        '18.1.1'
+    );
+
+    // intl-tel-input JS
+    wp_enqueue_script(
+        'intl-tel-input-js',
+        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js',
+        array(),
+        '18.1.1',
+        true
+    );
+
+    // intl-tel-input utils.js (para validación y formato internacional)
+    wp_enqueue_script(
+        'intl-tel-input-utils',
+        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js',
+        array('intl-tel-input-js'),
+        '18.1.1',
+        true
+    );
+
     }
 }
 add_action('wp_enqueue_scripts', 'drdev_enqueue_assets');

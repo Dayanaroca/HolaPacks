@@ -15,8 +15,11 @@ module.exports = {
        colors: {
         primary: '#0D6A68',
         secondary: '#F7B11D',
-        black: '#000000',
+        black: '#303030',
         white: '#ffffff',
+      },
+      boxShadow: {
+        custom: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
       },
     },
   },
