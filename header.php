@@ -45,9 +45,9 @@
   <meta name="twitter:image" content="<?php echo esc_url($image_url); ?>">
 
     <!-- Favicon -->
-  <link rel="icon" href="<?php echo $favicon_ico; ?>" sizes="any">
+  <!-- <link rel="icon" href="<?php echo $favicon_ico; ?>" sizes="any">
   <link rel="icon" href="<?php echo $favicon_svg; ?>" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="<?php echo $apple_touch_icon; ?>">
+  <link rel="apple-touch-icon" href="<?php echo $apple_touch_icon; ?>"> -->
   <meta name="theme-color" content="#1e40af">
 
     <!-- Google Fonts preload -->
@@ -55,17 +55,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="<?php echo get_theme_file_uri('/assets/css/input.css'); ?>" as="style">
-  <link rel="preload" href="<?php echo get_theme_file_uri('/assets/js/scripts.js'); ?>" as="script">
+  <!-- <link rel="preload" href="<?php echo get_theme_file_uri('/assets/css/input.css'); ?>" as="style">
+  <link rel="preload" href="<?php echo get_theme_file_uri('/assets/js/scripts.js'); ?>" as="script"> -->
 
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('bg-white text-gray-900 antialiased font-sans'); ?>>
-  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-50 focus:underline" href="#main-content">
+<body <?php body_class('bg-white text-gray-900 antialiased font-sans relative z-0'); ?>>
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:z-10 focus:underline" href="#main-content">
     <?php esc_html_e('Saltar al contenido', 'text-domain'); ?>
   </a>
-  <header class="bg-white">
+  <header class="bg-white relative z-50 xs:z-1">
+    <!-- Overlay menú móvil -->
+    <div id="mobile-menu-overlay" class="fixed top-[5.5rem] left-0 right-0 bottom-0 bg-black bg-opacity-50 hidden z-30"></div>
+
    <div class="flex justify-between items-center mx-auto px-4 py-4 md:px-6 md:py-[22px]">
 
        <!-- Logo (centrado en móvil) -->
@@ -170,7 +173,7 @@
  <!-- Menú móvil (hidden por defecto) -->
     <div 
       id="mobile-menu" 
-      class="hidden lg:hidden bg-white w-full fixed inset-x-0 top-[5.5rem] shadow-lg left-0  border-t border-black-200"
+      class="hidden lg:hidden bg-white w-full fixed inset-x-0 top-[5.5rem] shadow-lg left-0  border-t border-black-200 z-40"
       aria-hidden="true"
     >
       <div class="container mx-auto px-9 py-7">

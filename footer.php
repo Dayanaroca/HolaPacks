@@ -2,5 +2,6 @@
     <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
   </footer>
   <?php wp_footer(); ?>
+  <?php get_template_part('template-parts/footer/rastreo'); ?>
 </body>
 </html>

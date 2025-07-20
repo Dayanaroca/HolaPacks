@@ -10,37 +10,37 @@
     <form id="contactForm" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
       <!-- Nombre -->
       <div>
-        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required
-          class="mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
+        <label for="nombre" class="block text-sm font-semibold text-drdevblue">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Carlos" required
+          class="amber06 mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
       </div>
 
       <!-- Apellidos -->
       <div>
-        <label for="apellidos" class="block text-sm font-medium text-gray-700">Apellidos</label>
-        <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" required
-          class="mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
+        <label for="apellidos" class="block text-sm font-semibold text-drdevblue">Apellidos</label>
+        <input type="text" id="apellidos" name="apellidos" placeholder="Fernandez" required
+          class="amber06 mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
       </div>
 
       <!-- Email -->
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required
-          class="mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
+        <label for="email" class="block text-sm font-semibold text-drdevblue">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="ej@email.com" required
+          class="amber06 mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
       </div>
 
       <!-- Teléfono con prefijo -->
       <div>
-        <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
-          <input type="tel" id="telefono" name="telefono" placeholder="123456789"
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
+        <label for="telefono" class="block text-sm font-semibold text-gdrdevblue">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="11293840307"
+            class=" amber06 mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary" />
       </div>
 
       <!-- Comentarios (ocupa ambas columnas) -->
       <div class="sm:col-span-2">
-        <label for="comentarios" class="block text-sm font-medium text-gray-700">Comentarios adicionales</label>
-        <textarea id="comentarios" name="comentarios" placeholder="Escribe aquí tus comentarios..."
-          class="mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary"
+        <label for="comentarios" class="block text-sm font-semibold text-drdevblue">Comentarios adicionales</label>
+        <textarea id="comentarios" name="comentarios" placeholder="Escribe tus necesidades:"
+          class="amber06 mt-1 block w-full border border-gray-300 rounded-md p-2.5 focus:ring-primary focus:border-primary"
           rows="5"></textarea>
       </div>
 
@@ -56,8 +56,12 @@
 
         <!-- Botón CTA -->
         <button type="submit"
-          class="w-full sm:w-auto max-w-[14.25rem] text-center px-6 py-3 bg-primary text-white font-bold text-base leading-[1.2em] rounded">
-          Enviar información
+          class="w-full sm:w-auto max-w-[15rem] px-6 py-3 bg-primary text-white font-bold text-base leading-[1.2em] rounded flex items-center justify-center gap-x-2">
+          Enviar información 
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10.4492 2.94928L17.4999 10L10.4492 17.0507" stroke="#FAFAFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.4999 10L2.5 10" stroke="#FAFAFA" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
       </div>
     </form>

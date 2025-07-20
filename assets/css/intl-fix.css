@@ -1,0 +1,11 @@
+.iti {
+  width: 100% !important;
+}
+.iti input {
+  width: 100%;
+  padding-left: 58px !important; /
+}
+.iti input, .iti input[type=tel], .iti input[type=text] {
+    margin-top: 0.25rem !important;
+
+}

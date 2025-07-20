@@ -49,6 +49,14 @@ function drdev_enqueue_assets() {
         true
     );
 
+    wp_enqueue_style(
+    'intl-fix',
+    get_template_directory_uri() . '/assets/css/intl-fix.css',
+    array('intl-tel-input-css'), 
+    filemtime(get_template_directory() . '/assets/css/intl-fix.css')
+    );
+
+
     }
 }
 add_action('wp_enqueue_scripts', 'drdev_enqueue_assets');
@@ -192,3 +200,86 @@ class Accessibility_Walker_Nav_Menu extends Walker_Nav_Menu {
         $output .= "\n$indent<ul class=\"sub-menu\" role=\"menu\">\n";
     }
 }
+
+function drdev_register_cpt_servicios() {
+  $labels = array(
+    'name'               => 'Servicios',
+    'singular_name'      => 'Servicio',
+    'menu_name'          => 'Servicios',
+    'name_admin_bar'     => 'Servicio',
+    'add_new'            => 'Agregar nuevo',
+    'add_new_item'       => 'Agregar nuevo servicio',
+    'new_item'           => 'Nuevo servicio',
+    'edit_item'          => 'Editar servicio',
+    'view_item'          => 'Ver servicio',
+    'all_items'          => 'Todos los servicios',
+    'search_items'       => 'Buscar servicios',
+    'not_found'          => 'No se encontraron servicios',
+    'not_found_in_trash' => 'No hay servicios en la papelera'
+  );
+
+  $args = array(
+    'labels'             => $labels,
+    'public'             => false, // 👈 Esto lo oculta de Google y del frontend
+    'publicly_queryable' => false, // 👈 Esto evita que se genere una URL accesible
+    'show_ui'            => true,
+    'show_in_menu'       => true,
+    'query_var'          => false,
+    'rewrite'            => false,
+    'capability_type'    => 'post',
+    'has_archive'        => false,
+    'hierarchical'       => false,
+    'menu_position'      => 20,
+    'menu_icon'          => 'dashicons-clipboard',
+    'supports'           => array('title')
+  );
+
+  register_post_type('servicio', $args);
+}
+add_action('init', 'drdev_register_cpt_servicios');
+
+function drdev_add_servicio_meta_box() {
+  add_meta_box(
+    'servicio_meta_box',
+    'Detalles del Servicio',
+    'drdev_render_servicio_meta_box',
+    'servicio',
+    'normal',
+    'high'
+  );
+}
+add_action('add_meta_boxes', 'drdev_add_servicio_meta_box');
+
+function drdev_render_servicio_meta_box($post) {
+  // Obtener valores actuales
+  $precio = get_post_meta($post->ID, '_servicio_precio', true);
+  $entrega = get_post_meta($post->ID, '_servicio_entrega', true);
+  $detalles = get_post_meta($post->ID, '_servicio_detalles', true);
+
+  // Campo Precio
+  echo '<label>Precio:</label><br>';
+  echo '<input type="text" name="servicio_precio" value="' . esc_attr($precio) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  // Campo Tiempo de entrega
+  echo '<label>Tiempo de entrega:</label><br>';
+  echo '<input type="text" name="servicio_entrega" value="' . esc_attr($entrega) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  // Campo Detalles
+  echo '<label>Detalles adicionales:</label><br>';
+  echo '<textarea name="servicio_detalles" rows="4" style="width:100%;">' . esc_textarea($detalles) . '</textarea>';
+}
+
+function drdev_save_servicio_meta($post_id) {
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+  if (isset($_POST['servicio_precio'])) {
+    update_post_meta($post_id, '_servicio_precio', sanitize_text_field($_POST['servicio_precio']));
+  }
+  if (isset($_POST['servicio_entrega'])) {
+    update_post_meta($post_id, '_servicio_entrega', sanitize_text_field($_POST['servicio_entrega']));
+  }
+  if (isset($_POST['servicio_detalles'])) {
+    update_post_meta($post_id, '_servicio_detalles', sanitize_textarea_field($_POST['servicio_detalles']));
+  }
+}
+add_action('save_post', 'drdev_save_servicio_meta');
