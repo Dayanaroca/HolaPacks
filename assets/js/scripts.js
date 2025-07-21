@@ -109,3 +109,22 @@ async function submitTracking() {
     content.classList.toggle('hidden');
     icon.classList.toggle('rotate-180');
   }
+    function toggleFaq(index) {
+        const answer = document.getElementById(`faq-answer-${index}`);
+        const button = answer.previousElementSibling;
+        const icon = button.querySelector('.faq-toggle-icon');
+        
+        // Toggle visibility
+        answer.classList.toggle('hidden');
+        
+        // Update ARIA attributes
+        const isExpanded = answer.classList.contains('hidden') ? 'false' : 'true';
+        button.setAttribute('aria-expanded', isExpanded);
+        
+        // Rotate icon
+        if (isExpanded === 'true') {
+            icon.innerHTML = '<path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />';
+        } else {
+            icon.innerHTML = '<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />';
+        }
+    }

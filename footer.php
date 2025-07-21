@@ -1,5 +1,11 @@
-  <footer class="bg-gray-100 mt-12 p-4 text-center text-sm text-gray-600">
-    <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
+  <footer class="bg-primary mt-12 p-4 text-white">
+    <?php
+      global $drdev_assets;
+      if (!is_array($drdev_assets)) {
+        $drdev_assets = drdev_get_assets_data(); 
+      }
+      get_template_part('template-parts/footer/contentFooter'); 
+    ?>
   </footer>
   <?php wp_footer(); ?>
   <?php get_template_part('template-parts/footer/rastreo'); ?>

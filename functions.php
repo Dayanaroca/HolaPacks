@@ -61,7 +61,12 @@ function drdev_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'drdev_enqueue_assets');
 
-// Habilitar soporte de características
+require_once get_template_directory() . '/inc/assets-paths.php';
+add_action('wp', function () {
+    global $hp_assets;
+    $drdev_assets = drdev_get_assets_data();
+});
+
 function drdev_theme_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -220,8 +225,8 @@ function drdev_register_cpt_servicios() {
 
   $args = array(
     'labels'             => $labels,
-    'public'             => false, // 👈 Esto lo oculta de Google y del frontend
-    'publicly_queryable' => false, // 👈 Esto evita que se genere una URL accesible
+    'public'             => false, // oculta de Google y del frontend
+    'publicly_queryable' => false, //  evita que se genere una URL accesible
     'show_ui'            => true,
     'show_in_menu'       => true,
     'query_var'          => false,
@@ -283,3 +288,60 @@ function drdev_save_servicio_meta($post_id) {
   }
 }
 add_action('save_post', 'drdev_save_servicio_meta');
+
+function drdev_register_faq_post_type() {
+    register_post_type('faq', [
+        'label' => 'FAQs',
+        'public' => false, 
+        'publicly_queryable' => false, 
+        'show_ui' => true,
+        'supports' => ['title', 'editor'],
+        'menu_icon' => 'dashicons-editor-help',
+        'exclude_from_search' => true,
+        'show_in_nav_menus' => false,
+        'show_in_rest' => false, // Oculta del editor de bloques (si no usás Gutenberg)
+        'rewrite' => false, // No genera URLs reescritas
+        'query_var' => false, // No accesible por ?faq=slug
+    ]);
+
+    register_taxonomy('faq_group', 'faq', [
+    'label' => 'Grupos de FAQ',
+    'hierarchical' => false,
+    'show_ui' => true,
+    'show_in_menu'      => true,
+    'show_admin_column' => true,
+    'public'            => false,         
+    'rewrite'           => false, // No crea URLs para términos
+    'query_var'         => false, // No accesible por ?faq_group=
+    'show_in_rest'      => true, 
+    ]);
+}
+add_action('init', 'drdev_register_faq_post_type');
+
+require_once get_template_directory() . '/template-parts/faq.php';
+function render_faq_group($group_slug = 'faq-home', $title = 'Preguntas frecuentes') {
+    $faqs = get_posts([
+        'post_type' => 'faq',
+        'numberposts' => -1,
+        'orderby' => 'menu_order',
+        'order' => 'ASC',
+        'tax_query' => [
+            [
+                'taxonomy' => 'faq_group',
+                'field' => 'slug',
+                'terms' => $group_slug
+            ]
+        ]
+    ]);
+
+    if (empty($faqs)) return;
+
+    $parsed_faqs = array_map(function($faq) {
+        return [
+            'question' => get_the_title($faq),
+            'answer' => apply_filters('the_content', $faq->post_content),
+        ];
+    }, $faqs);
+
+    faq_component($parsed_faqs, $title);
+}

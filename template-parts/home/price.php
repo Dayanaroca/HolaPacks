@@ -1,4 +1,4 @@
-<section aria-label="Precios Hola Packs" class="relative flex w-full mt-32 bg-bgyellow items-center justify-center">
+<section aria-label="Precios Hola Packs" class="relative flex w-full mt-32 bg-secondary items-center justify-center">
     <!-- SVG izquierda vertical centrado -->
     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/green-ribbon.svg"
         alt=""
@@ -7,7 +7,7 @@
     <!-- SVG derecha, sobresaliendo arriba -->
     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/green-ribbon-r.svg"
         alt=""
-        class="hidden sm:block absolute right-0 -top-32 w-18 z-10 pointer-events-none" />
+        class="block absolute right-0 -top-24 sm:-top-36 w-64 sm:w-96 h-auto z-10 pointer-events-none" />
 
   <div class="w-full xl:max-w-screen-lg mx-auto px-2.5 2xl:py-24 py-12 mb-2">
     <h2 class="text-primary w-4/5 uppercase mx-auto sm:w-full font-black text-2xl sm:text-4xl text-center pb-6">
@@ -61,6 +61,9 @@
 
         <!-- Mobile/Tablet -->
         <div class="block lg:hidden space-y-4">
+            <span class="flex h-[37px] justify-center items-center gap-[62px] self-stretch w-full rounded-[20px] bg-primary text-white text-base font-black">
+                Servicio
+            </span>
         <?php foreach ($servicios as $servicio) : ?>
             <div class="border-b-2 border-primary p-4">
             <button onclick="toggleServicio(this)" class="flex justify-between items-center w-full text-left">
