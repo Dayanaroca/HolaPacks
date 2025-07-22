@@ -31,6 +31,10 @@ function drdev_get_assets_data() {
     'facebook_icon'    => $icon_path . 'facebook-icon.svg',
     'instagram_icon'   => $icon_path . 'instragram-icon.svg',
     'logo-footer'      => $icon_path . 'logo-footer.svg',
+    'yellow-ribbon-left'=> $icon_path . 'yellow-ribbon-left.svg',
+    'yellow-ribbon-left-mobile'=> $icon_path . 'yellow-ribbon-left-mobile.svg',
+    'yellow-ribbon-right'=> $icon_path . 'yellow-ribbon-right.svg',
+    'yellow-ribbon-right-mobile'=> $icon_path . 'yellow-ribbon-right-mobile.svg',
 
     // Contact
     'phone'            => $phone,

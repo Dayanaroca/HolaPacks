@@ -19,6 +19,8 @@ get_header(); ?>
 
     get_template_part('template-parts/AboutUs/about-us'); 
 
+    get_template_part('template-parts/AboutUs/our-history');
+
     render_faq_group('home', 'Preguntas frecuentes');
 ?>
 </main>

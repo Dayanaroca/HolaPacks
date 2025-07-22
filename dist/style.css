@@ -837,6 +837,10 @@ header::after, #mobile-menu::after {
   top: 5.5rem;
 }
 
+.-top-10 {
+  top: -2.5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -946,6 +950,18 @@ header::after, #mobile-menu::after {
   margin-top: 2rem;
 }
 
+.-mt-10 {
+  margin-top: -2.5rem;
+}
+
+.-mt-20 {
+  margin-top: -5rem;
+}
+
+.-mt-28 {
+  margin-top: -7rem;
+}
+
 .block {
   display: block;
 }
@@ -1014,8 +1030,8 @@ header::after, #mobile-menu::after {
   height: 59px;
 }
 
-.h-\[75vh\] {
-  height: 75vh;
+.h-\[60vh\] {
+  height: 60vh;
 }
 
 .h-\[85vh\] {
@@ -1034,16 +1050,20 @@ header::after, #mobile-menu::after {
   height: 100vh;
 }
 
-.h-\[60vh\] {
-  height: 60vh;
+.h-\[30\%\] {
+  height: 30%;
 }
 
-.max-h-\[500px\] {
-  max-height: 500px;
+.h-\[70\%\] {
+  height: 70%;
 }
 
 .max-h-\[600px\] {
   max-height: 600px;
+}
+
+.max-h-\[700px\] {
+  max-height: 700px;
 }
 
 .min-h-screen {
@@ -1098,12 +1118,20 @@ header::after, #mobile-menu::after {
   width: 95%;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-full {
   width: 100%;
 }
 
-.w-auto {
-  width: auto;
+.w-\[15\%\] {
+  width: 15%;
+}
+
+.w-\[55\%\] {
+  width: 55%;
 }
 
 .max-w-2xl {
@@ -1138,16 +1166,20 @@ header::after, #mobile-menu::after {
   max-width: 1280px;
 }
 
-.max-w-\[90\%\] {
-  max-width: 90%;
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
 }
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.flex-shrink-0 {
-  flex-shrink: 0;
 }
 
 .shrink-0 {
@@ -1193,6 +1225,14 @@ header::after, #mobile-menu::after {
   align-items: stretch;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -1225,8 +1265,8 @@ header::after, #mobile-menu::after {
   gap: 62px;
 }
 
-.gap-0 {
-  gap: 0px;
+.gap-\[2\.125rem\] {
+  gap: 2.125rem;
 }
 
 .gap-x-2 {
@@ -1392,6 +1432,11 @@ header::after, #mobile-menu::after {
      object-fit: contain;
 }
 
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1482,9 +1527,13 @@ header::after, #mobile-menu::after {
   padding-bottom: 2rem;
 }
 
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
 }
 
 .pb-6 {
@@ -1495,8 +1544,16 @@ header::after, #mobile-menu::after {
   padding-bottom: 2rem;
 }
 
+.pl-6 {
+  padding-left: 1.5rem;
+}
+
 .pl-8 {
   padding-left: 2rem;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
 }
 
 .pr-8 {
@@ -1515,30 +1572,6 @@ header::after, #mobile-menu::after {
   padding-top: 2rem;
 }
 
-.pb-4 {
-  padding-bottom: 1rem;
-}
-
-.pb-12 {
-  padding-bottom: 3rem;
-}
-
-.pb-24 {
-  padding-bottom: 6rem;
-}
-
-.pr-6 {
-  padding-right: 1.5rem;
-}
-
-.pl-6 {
-  padding-left: 1.5rem;
-}
-
-.pr-10 {
-  padding-right: 2.5rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -1554,6 +1587,11 @@ header::after, #mobile-menu::after {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-\[12px\] {
@@ -1613,9 +1651,9 @@ header::after, #mobile-menu::after {
   line-height: 1rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-black {
@@ -1973,6 +2011,11 @@ header::after, #mobile-menu::after {
     padding-bottom: 4rem;
   }
 
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .sm\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -2064,6 +2107,18 @@ header::after, #mobile-menu::after {
     width: 228px;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-\[40\%\] {
+    width: 40%;
+  }
+
+  .md\:w-\[60\%\] {
+    width: 60%;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2090,6 +2145,10 @@ header::after, #mobile-menu::after {
 
   .md\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .md\:gap-\[2\.125rem\] {
+    gap: 2.125rem;
   }
 
   .md\:px-0 {
@@ -2122,6 +2181,11 @@ header::after, #mobile-menu::after {
     padding-bottom: 22px;
   }
 
+  .md\:py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .md\:text-left {
     text-align: left;
   }
@@ -2133,6 +2197,11 @@ header::after, #mobile-menu::after {
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
   }
 
   .md\:text-\[14px\] {
@@ -2156,11 +2225,6 @@ header::after, #mobile-menu::after {
     line-height: 1.75rem;
   }
 
-  .md\:text-7xl {
-    font-size: 4.5rem;
-    line-height: 1;
-  }
-
   .md\:font-bold {
     font-weight: 700;
   }
@@ -2173,18 +2237,6 @@ header::after, #mobile-menu::after {
 @media (min-width: 1024px) {
   .lg\:mt-4 {
     margin-top: 1rem;
-  }
-
-  .lg\:mb-0 {
-    margin-bottom: 0px;
-  }
-
-  .lg\:ml-\[-20px\] {
-    margin-left: -20px;
-  }
-
-  .lg\:mr-\[-20px\] {
-    margin-right: -20px;
   }
 
   .lg\:block {
@@ -2203,28 +2255,16 @@ header::after, #mobile-menu::after {
     height: 75vh;
   }
 
-  .lg\:w-\[15\%\] {
-    width: 15%;
+  .lg\:w-\[18\%\] {
+    width: 18%;
   }
 
   .lg\:w-\[70\%\] {
     width: 70%;
   }
 
-  .lg\:w-\[25\%\] {
-    width: 25%;
-  }
-
-  .lg\:w-\[20\%\] {
-    width: 20%;
-  }
-
-  .lg\:w-\[18\%\] {
-    width: 18%;
-  }
-
-  .lg\:max-w-\[15\%\] {
-    max-width: 15%;
+  .lg\:w-\[80\%\] {
+    width: 80%;
   }
 
   .lg\:flex-row {
@@ -2244,16 +2284,6 @@ header::after, #mobile-menu::after {
     padding-right: 2rem;
   }
 
-  .lg\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .lg\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
   .lg\:pb-12 {
     padding-bottom: 3rem;
   }
@@ -2261,22 +2291,9 @@ header::after, #mobile-menu::after {
   .lg\:text-left {
     text-align: left;
   }
-
-  .lg\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
 }
 
 @media (min-width: 1280px) {
-  .xl\:w-\[12\%\] {
-    width: 12%;
-  }
-
-  .xl\:w-\[76\%\] {
-    width: 76%;
-  }
-
   .xl\:max-w-\[70\%\] {
     max-width: 70%;
   }
@@ -2288,23 +2305,9 @@ header::after, #mobile-menu::after {
   .xl\:max-w-screen-lg {
     max-width: 1024px;
   }
-
-  .xl\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .xl\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
 }
 
 @media (min-width: 1536px) {
-  .\32xl\:w-\[10\%\] {
-    width: 10%;
-  }
-
   .\32xl\:max-w-\[45\%\] {
     max-width: 45%;
   }
@@ -2316,11 +2319,6 @@ header::after, #mobile-menu::after {
   .\32xl\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
-  }
-
-  .\32xl\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .\32xl\:text-\[68px\] {
