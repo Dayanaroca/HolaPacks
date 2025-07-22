@@ -12,10 +12,10 @@
   }
 ?>
 
-    <div class="container mx-auto px-6 max-w-[1200px]">
+    <div class="mx-auto px-4 py-6 md:px-10">
         <div class="flex flex-col md:flex-row justify-between">
             <!-- Columna Logo y Copyright -->
-            <div class="mb-6 md:mb-0">
+            <div class="mb-6 md:mb-0 flex flex-col items-center md:items-start justify-between">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center">
                     <?php
                         echo '<svg xmlns="http://www.w3.org/2000/svg" width="239" height="59" viewBox="0 0 239 59" fill="none">
@@ -49,17 +49,28 @@
                         </defs>
                         </svg>';
                     ?>
-                </a>
-                <p class="text-white text-xs font-bold">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
-            </div>
+                  </a>
+                    <div class="flex items-center gap-2 justify-center md:justify-start mt-4">
+                        <a href="<?php echo esc_attr($drdev_assets['tiktok']); ?>">
+                            <img src="<?php echo esc_url($drdev_assets['tiktok_icon']); ?>" alt="red social tiktok" class="h-8 w-8">
+                        </a>
+                        <a href="<?php echo esc_attr($drdev_assets['facebook']); ?>">
+                            <img src="<?php echo esc_url($drdev_assets['facebook_icon']); ?>" alt="red social tiktok" class="h-8 w-8">
+                        </a>
+                        <a href="<?php echo esc_attr($drdev_assets['instagram']); ?>">
+                            <img src="<?php echo esc_url($drdev_assets['instagram_icon']); ?>" alt="red social tiktok" class="h-8 w-8">
+                        </a>
+                    </div>
+                    <p class="text-white text-xs font-bold text-center md:text-left mt-4">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos los derechos reservados.</p>
+                </div>
 
             <!-- Columna Legal (desde menú de WordPress) -->
-            <?php if (has_nav_menu('menu-legal')) : ?>
-                <div class="mb-6 md:mb-0">
-                    <h4 class="font-outfit mb-4 mt-4"><?php esc_html_e('Legal', 'drdevultimate'); ?></h4>
+            <?php if (has_nav_menu('legal')) : ?>
+                <div class="mb-6 md:mb-0 hidden lg:block">
+                    <h4 class="font-outfit mb-4 mt-4 text-base font-bold"><?php esc_html_e('Legal', 'drdevultimate'); ?></h4>
                     <?php
                     wp_nav_menu([
-                        'theme_location' => 'menu-legal',
+                        'theme_location' => 'legal',
                         'menu_class' => 'space-y-2',
                         'container' => false,
                         'depth' => 1,
@@ -68,14 +79,39 @@
                     ?>
                 </div>
             <?php endif; ?>
+
+            <!-- Mobile -->
+            <div class="block lg:hidden space-y-4">
+                <div class="border-b-2 border-secondary p-4">
+                    <button onclick="toggleServicio(this)" class="flex justify-between items-center w-full text-left">
+                        <h4 class="font-outfit mb-2 md:mb-4 mt-4 text-base font-bold"><?php esc_html_e('Legal', 'drdevultimate'); ?></h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                            <path d="M10.9377 12.7275L7.60429 9.22754H14.271L10.9377 12.7275Z" fill="#F7B11D"/>
+                            </svg>
+                    </button>
+                    <?php if (has_nav_menu('legal')) : ?>
+                        <div class="toggle-content mt-3 hidden space-y-2 text-sm text-white">
+                             <?php
+                                wp_nav_menu([
+                                    'theme_location' => 'legal',
+                                    'menu_class' => 'space-y-2',
+                                    'container' => false,
+                                    'depth' => 1,
+                                    'walker' => new Footer_Menu_Walker()
+                                ]);
+                                ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>                
 
             <!-- Columna Nosostros (desde menú de WordPress) -->
-            <?php if (has_nav_menu('menu-2')) : ?>
-                <div class="mb-6 md:mb-0">
-                    <h4 class="font-outfit mb-4 mt-4"><?php esc_html_e('Nosotros', 'drdevultimate'); ?></h4>
+            <?php if (has_nav_menu('secondary')) : ?>
+                <div class="mb-6 md:mb-0 hidden lg:block">
+                    <h4 class="font-outfit mb-4 mt-4 text-base font-bold"><?php esc_html_e('Nosotros', 'drdevultimate'); ?></h4>
                     <?php
                     wp_nav_menu([
-                        'theme_location' => 'menu-2',
+                        'theme_location' => 'secondary',
                         'menu_class' => 'space-y-2',
                         'container' => false,
                         'depth' => 1,
@@ -85,39 +121,55 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Columna Contacto -->
-            <div>
-                <h4 class="font-outfit mb-4 mt-4"><?php esc_html_e('Si tiene alguna pregunta, contáctenos', 'mipacks'); ?></h4>
-					<a href="tel:<?php echo esc_attr($phone); ?>" class="flex items-center text-sm/6 font-normal hover:underline transition-colors mb-2">
-						<?php 
-							if(file_exists($drdev_assets['$phone_icon'])) {
-								echo file_get_contents($drdev_assets['$phone_icon']);
-							}
-						?>
-						<span class="ml-2"><?php echo esc_html($phone); ?></span>
-						</a>
-						<a href="https://wa.me/<?php echo esc_attr($whatsapp); ?>" class="flex items-center text-sm/6 font-normal hover:underline transition-colors mb-2">
-						<?php 
-							if(file_exists($drdev_assets['$whatsapp_icon'])) {
-								echo file_get_contents($drdev_assets['$whatsapp_icon']);
-							}
-						?>
-						<span class="ml-2"><?php echo esc_html($whatsapp); ?></span>
-					</a>
-					<a href="mailto:<?php echo esc_attr($email); ?>" class="flex items-center text-sm/6 font-normal hover:underline transition-colors mb-2">
-						<?php 
-							$email_icon = get_template_directory() . '/assets/images/icons/email.svg';
-							if(file_exists($email_icon)) {
-								echo file_get_contents($email_icon);
-							}
-						?>
-						<span class="ml-2"><?php echo esc_html($email); ?></span>
-					</a>
-              <!--   <?php if (is_active_sidebar('sidebar-1')) : ?>
-                    <div class="space-y-2">
-                        <?php dynamic_sidebar('sidebar-1'); ?>
+            <!-- Mobile -->
+            <div class="block lg:hidden space-y-4">
+                <div class="border-b-2 border-secondary p-4">
+                    <button onclick="toggleServicio(this)" class="flex justify-between items-center w-full text-left">
+                        <h4 class="font-outfit mb-2 md:mb-4 mt-4 text-base font-bold"><?php esc_html_e('Nosotros', 'drdevultimate'); ?></h4>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                            <path d="M10.9377 12.7275L7.60429 9.22754H14.271L10.9377 12.7275Z" fill="#F7B11D"/>
+                            </svg>
+                    </button>
+                    <?php if (has_nav_menu('secondary')) : ?>
+                        <div class="toggle-content mt-3 hidden space-y-2 text-sm text-white">
+                             <?php
+                                wp_nav_menu([
+                                    'theme_location' => 'secondary',
+                                    'menu_class' => 'space-y-2',
+                                    'container' => false,
+                                    'depth' => 1,
+                                    'walker' => new Footer_Menu_Walker()
+                                ]);
+                                ?>
+                        </div>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?> -->
+                </div>              
+
+            <!-- Columna Contacto -->
+            <div class="flex flex-col text-center md:text-right gap-3 md:gap-2">
+                <h4 class="font-bold text-base mt-4 mb-1"><?php esc_html_e('Si tiene alguna pregunta, contáctenos', 'mipacks'); ?></h4>
+				<?php if ($drdev_assets['phone']): ?>
+                    <div class="flex items-center gap-8 pl-8 justify-center sm:justify-end">
+                        <div class="flex items-center gap-2">
+                            <img src="<?php echo esc_url($drdev_assets['phone_icon']); ?>" alt="" 
+                            aria-hidden="true" class="h-8 w-8">
+                            <a href="tel:<?php echo esc_attr($drdev_assets['phone']); ?>" class="text-white font-bold text-xs">
+                            <?php echo esc_attr($drdev_assets['phone']); ?>
+                            </a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <img src="<?php echo esc_url($drdev_assets['whatsapp_icon']); ?>" alt="" 
+                            aria-hidden="true" class="h-8 w-8">
+                            <a href="https://wa.me/<?php echo esc_attr($drdev_assets['whatsapp_clean']); ?>" target="_blank" rel="noopener noreferrer" class="text-white font-bold text-xs">
+                            <?php echo esc_attr($drdev_assets['whatsapp']); ?>
+                            </a>
+                        </div>
+                    </div>
+                     <a href="mailto:<?php echo esc_attr($drdev_assets['email']); ?>" target="_blank" rel="noopener noreferrer" class="text-white font-bold text-[12px] font-montserrat">
+                        <?php echo esc_attr($drdev_assets['email']); ?>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -126,8 +178,8 @@
 // Walker class para los menús del footer
 class Footer_Menu_Walker extends Walker_Nav_Menu {
     public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
-        $output .= '<li class="text-sm">';
-        $output .= '<a href="' . esc_url($item->url) . '" class="hover:underline">';
+        $output .= '<li class="text-xs font-normal md:font-bold">';
+        $output .= '<a href="' . esc_url($item->url) . '" class="">';
         $output .= esc_html($item->title);
         $output .= '</a></li>';
     }

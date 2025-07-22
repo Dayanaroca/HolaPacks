@@ -80,6 +80,8 @@ function drdev_theme_setup() {
     ]);
     register_nav_menus([
         'primary' => __('Menú Principal', 'drdevultimate'),
+        'secondary' => __( 'Footer Menu', 'drdevultimate' ),
+        'legal' => __('Menú Footer Legal', 'drdevultimate')
     ]);
 }
 add_action('after_setup_theme', 'drdev_theme_setup');
@@ -138,6 +140,43 @@ function drdevultimate_customize_register($wp_customize) {
             'type'     => 'textarea',
         ]);
     }
+
+    //Social media
+    $wp_customize->add_setting('company_tiktok', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('company_tiktok_control', [
+        'label'    => __('TikTok URL', 'drdevultimate'),
+        'section'  => 'company_data_section',
+        'settings' => 'company_tiktok',
+        'type'     => 'url',
+    ]);
+
+        $wp_customize->add_setting('company_facebook', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('company_facebook_control', [
+        'label'    => __('Facebook URL', 'drdevultimate'),
+        'section'  => 'company_data_section',
+        'settings' => 'company_facebook',
+        'type'     => 'url',
+    ]);
+
+    $wp_customize->add_setting('company_instagram', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    $wp_customize->add_control('company_instagram_control', [
+        'label'    => __('Instagram URL', 'drdevultimate'),
+        'section'  => 'company_data_section',
+        'settings' => 'company_instagram',
+        'type'     => 'url',
+    ]);
 }
 add_action('customize_register', 'drdevultimate_customize_register');
 

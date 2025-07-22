@@ -109,27 +109,19 @@
             </span>
           </a>
 
-      <!-- Contenido desktop (no cambia) -->
-
-      <?php
-        $phone = get_theme_mod('company_phone');
-        $ws = get_theme_mod('company_whatsapp');
-        $ws_clean = preg_replace('/[^0-9]/', '', $ws); 
-      ?>
-      <?php if ($phone): ?>
+      <!-- Content desktop -->
+      <?php if ($drdev_assets['phone']): ?>
         <div class="hidden md:flex items-center gap-8 px-8">
           <div class="flex items-center gap-2">
-            <img src="<?php echo esc_url($drdev_assets['$phone_icon']); ?>" alt="" 
-              aria-hidden="true" class="h-8 w-8">
-            <a href="tel:<?php echo esc_attr($phone); ?>" class="text-primary font-bold text-[12px] font-montserrat hover:underline">
-              <?php echo esc_html($phone); ?>
+           <img src="<?php echo esc_url($drdev_assets['phone_icon']); ?>" alt=""  aria-hidden="true" class="h-8 w-8">
+            <a href="tel:<?php echo esc_attr($drdev_assets['phone']); ?>" class="text-primary font-bold text-[12px] font-montserrat hover:underline">
+              <?php echo esc_attr($drdev_assets['phone']); ?>
             </a>
           </div>
           <div class="flex items-center gap-2">
-            <img src="<?php echo esc_url($drdev_assets['whatsapp_icon']); ?>" alt="" 
-              aria-hidden="true" class="h-8 w-8">
-            <a href="https://wa.me/<?php echo esc_attr($ws); ?>" target="_blank" rel="noopener noreferrer" class="text-primary font-bold text-[12px] font-montserrat">
-              <?php echo esc_html($ws); ?>
+            <img src="<?php echo esc_url($drdev_assets['whatsapp_icon']); ?>" alt="" aria-hidden="true" class="h-8 w-8">
+            <a href="https://wa.me/<?php echo esc_attr($drdev_assets['whatsapp_clean']); ?>" target="_blank" rel="noopener noreferrer" class="text-primary font-bold text-[12px] font-montserrat">
+              <?php echo esc_attr($drdev_assets['whatsapp']); ?>
             </a>
           </div>
         </div>
@@ -184,20 +176,15 @@
         </nav>
 
         <!-- Teléfonos en línea -->
-        <?php if ($phone): ?>
+        <?php if ($drdev_assets['phone']): ?>
           <div class="flex justify-left items-center pt-8 gap-4">
             <div class="flex items-center gap-2">
-              <img 
-                src="<?php echo esc_url($drdev_assets['$phone_icon']); ?>" 
-                alt="" 
-                aria-hidden="true"
-                class="h-7 w-7"
-              >
+              <img src="<?php echo esc_url($drdev_assets['phone_icon']); ?>" alt="" aria-hidden="true" class="h-7 w-7">
               <a 
-                href="tel:<?php echo esc_attr($phone); ?>" 
+                href="tel:<?php echo esc_attr($drdev_assets['phone']); ?>" 
                 class="text-primary font-bold text-[12px] font-montserrat"
               >
-                <?php echo esc_html($phone); ?>
+                <?php echo esc_attr($drdev_assets['phone']); ?>
               </a>
             </div>
             <div class="flex items-center gap-2">
@@ -208,12 +195,12 @@
                 class="h-7 w-7"
               >
               <a 
-                href="https://wa.me/<?php echo esc_attr($ws_clean); ?>" 
+                href="https://wa.me/<?php echo esc_attr($drdev_assets['whatsapp_clean']); ?>" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 class="text-primary font-bold text-[12px] font-montserrat"
               >
-                <?php echo esc_html($ws); ?>
+                <?php echo esc_attr($drdev_assets['whatsapp']); ?>
               </a>
             </div>
           </div>
