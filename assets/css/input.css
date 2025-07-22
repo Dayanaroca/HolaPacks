@@ -112,8 +112,11 @@
     .about-home-bg {
          background-image: url('../assets/images/home/about-home-bg.webp');
     }
-     .description-home-bg {
+    .description-home-bg {
          background-image: url('../assets/images/home/description-home-bg.webp');
+    }
+    .hero-aboutus-bg {
+         background-image: url('../assets/images/aboutUs/bg-about-us.webp');
     }
 
     @media (max-width: 1024px) {

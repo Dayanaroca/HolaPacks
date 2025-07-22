@@ -1,7 +1,7 @@
-<!-- Overlay + Popup de Rastreo -->
+<!-- Overlay + Popup de Rastreo --> 
 <div id="tracking-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-[9998]"></div>
 
-<div id="tracking-popup" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-[95%] sm:w-[85%] max-w-2xl hidden z-[9999]">
+<div id="tracking-popup" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg w-[95%] sm:w-[85%] max-w-2xl hidden z-[9999]" aria-modal="true" role="dialog">
   <div class="flex justify-between items-start mb-4">
     <h2 class="text-black font-montserrat text-[20px] font-bold leading-[1.2em]">
       Localiza tus envíos en tiempo real con Hola Packs
