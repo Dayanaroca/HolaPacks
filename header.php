@@ -101,7 +101,7 @@
            <a href="#"
           onclick="openTrackingPopup()" 
           class="order-3 md:hidden relative flex items-center justify-center w-[82px] h-[39px] md:w-[127px] md:h-[59px] text-center font-montserrat "
-          style="background-image: url('<?php echo  $tracking_bg; ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+          style="background-image: url('<?php echo esc_url($drdev_assets['tracking_bg']); ?>'); background-size: contain; background-repeat: no-repeat; background-position: center;">
 
           <img src="<?php echo esc_url($drdev_assets['tracking_icon']); ?>" alt="Rastrear" class="w-[20px] h-[20px]" role="presentation"/>
             <span class="text-[#0D6A68] text-[9.054px] font-bold leading-[8.407px] ml-1 md:text-[14px] md:leading-[13px]">

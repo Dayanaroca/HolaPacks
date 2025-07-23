@@ -1,4 +1,4 @@
-<section aria-label="Formulario de contacto" class="w-full rounded-lg shadow-custom text-left xl:max-w-[70%] 2xl:max-w-[80%] mx-auto p-8 bg-white">
+<section aria-label="Formulario de contacto" id="formulario-envio" class="w-full rounded-lg shadow-custom text-left xl:max-w-[70%] 2xl:max-w-[80%] mx-auto p-8 bg-white">
   <div class="px-2.5">
     <h2 class="font-black text-2xl sm:text-3xl">
       ¡Envía paquetes a Cuba de manera fácil y segura!

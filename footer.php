@@ -119,6 +119,7 @@ function drdev_display_menu($location, $title) {
             </div>
         </div>
     </div>
+    <?php wp_footer(); ?>
 </footer>
   <?php get_template_part('template-parts/footer/rastreo'); ?>
 </body>

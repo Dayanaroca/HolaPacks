@@ -2,8 +2,8 @@
 function faq_component($faqs = [], $title = 'Preguntas frecuentes') {
     if (empty($faqs)) return;
     ?>
-    <section class="faq-section py-12 px-2.5 md:px-8 max-w-6xl mx-auto sm:py-16">
-        <h2 class="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
+    <section class="faq-section pb-12 px-2.5 md:px-8 max-w-6xl mx-auto sm:pb-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4 md:mb-8 text-center">
             <?php echo esc_html($title); ?>
         </h2>
         

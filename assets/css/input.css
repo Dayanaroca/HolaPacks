@@ -118,6 +118,9 @@
     .hero-aboutus-bg {
          background-image: url('../assets/images/aboutUs/bg-about-us.webp');
     }
+    .hero-recharges-bg {
+         background-image: url('../assets/images/Recharges/bg-section-15.webp');
+    }
 
     @media (max-width: 1024px) {
         .hero-bg {

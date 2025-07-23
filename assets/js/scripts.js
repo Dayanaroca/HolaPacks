@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      
+      console.log('hi')
       // Alternar estados
       menuToggle.setAttribute('aria-expanded', !isExpanded);
       mobileMenu.classList.toggle('hidden');

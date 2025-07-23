@@ -4,8 +4,9 @@ function drdev_enqueue_assets() {
     wp_enqueue_style('drdev-style', get_template_directory_uri() . '/dist/style.css', [], filemtime(get_template_directory() . '/dist/style.css'));
     
     wp_enqueue_script('drdev-script', get_template_directory_uri() . '/assets/js/scripts.js', [], false, true);
+ 
 
-        if(is_front_page() || is_page_template('template-hero.php')) {
+    if(is_front_page() || is_page_template('template-hero.php')) {
         // CSS
         wp_enqueue_style(
             'swiper-css',

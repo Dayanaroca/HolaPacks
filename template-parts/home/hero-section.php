@@ -1,3 +1,9 @@
+<?php
+  global $drdev_assets;
+  if (!is_array($drdev_assets)) {
+    $drdev_assets = drdev_get_assets_data(); 
+  }
+?>
 <section aria-label="Hero principal con promociones" class="relative w-full h-[85vh]">
   <!-- Slider Container -->
   <div class="swiper hero-slider h-full">
@@ -38,7 +44,7 @@
               <h3 class="text-secondary mt-6 text-[14px] sm:text-[32px] leading-[1.2em] font-normal drop-shadow-[0_0_2px_rgba(0,0,0,0.25)]">
                 Hasta (fecha de culminación)
               </h3>
-              <a href="/recargas" class="inline-block mt-8 px-6 py-3 bg-secondary text-white font-bold text-base leading-[1.2em] rounded">
+              <a href="https://wa.me/<?php echo esc_attr($drdev_assets['whatsapp_clean']); ?>" class="inline-block mt-8 px-6 py-3 bg-secondary text-white font-bold text-base leading-[1.2em] rounded">
                 Contacta para Recargar Ahora
               </a>
             </div>

@@ -9,7 +9,7 @@
   <div class="flex flex-col lg:flex-row items-stretch w-full">
     
     <!-- Columna izquierda con SVG - Decoración -->
-    <div class="w-[55%] lg:w-[18%] flex items-center justify-start lg:justify-end" aria-hidden="true">
+    <div class="w-[55%] lg:w-[18%] flex items-center justify-start" aria-hidden="true">
       <img src="<?php echo esc_url($drdev_assets['yellow-ribbon-left']); ?>" 
            alt="" 
            class="hidden lg:block h-full max-h-[600px] w-auto object-contain"
@@ -25,7 +25,7 @@
     </div>
    
     <!-- Columna central con contenido principal -->
-    <div class="flex-1 py-0 md:py-12 flex items-center justify-center bg-white max-w-screen-lg">
+    <div class="flex-1 py-0 md:py-12 flex items-center justify-center bg-white">
       <div class="w-full lg:w-[80%] mx-auto px-4">
         <h2 class="sr-only">Nuestro servicio de paquetería a Cuba</h2>
         <p class="text-center">
