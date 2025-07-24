@@ -7,9 +7,10 @@ function drdev_get_assets_data() {
   $email     = get_theme_mod('company_email');
   $ws        = get_theme_mod('company_whatsapp');
   $ws_clean  = preg_replace('/[^0-9]/', '', $ws);
-  $tiktok     = get_theme_mod('company_tiktok');
-  $facebook     = get_theme_mod('company_facebook');
-  $instagram     = get_theme_mod('company_instagram');
+  $schedule  = get_theme_mod('company_schedule');
+  $tiktok    = get_theme_mod('company_tiktok');
+  $facebook  = get_theme_mod('company_facebook');
+  $instagram = get_theme_mod('company_instagram');
 
   return [
     // General
@@ -41,6 +42,7 @@ function drdev_get_assets_data() {
     'email'            => $email,
     'whatsapp'         => $ws,
     'whatsapp_clean'   => $ws_clean,
+    'schedule'         => $schedule,
 
     //Social media
     'tiktok'            => $tiktok,

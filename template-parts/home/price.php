@@ -1,4 +1,4 @@
-<section aria-label="Precios Hola Packs" class="relative flex w-full mt-32 bg-secondary items-center justify-center">
+<section aria-label="Precios Hola Packs" class="relative flex w-full mt-32 bg-secondary items-center justify-center mb-12 md:mb-16">
     <!-- SVG izquierda vertical centrado -->
     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/green-ribbon.svg"
         alt=""

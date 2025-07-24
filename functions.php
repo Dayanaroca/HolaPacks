@@ -1,5 +1,6 @@
 <?php
 
+// scripts and styles
 function drdev_enqueue_assets() {
     wp_enqueue_style('drdev-style', get_template_directory_uri() . '/dist/style.css', [], filemtime(get_template_directory() . '/dist/style.css'));
     
@@ -68,6 +69,7 @@ add_action('wp', function () {
     $drdev_assets = drdev_get_assets_data();
 });
 
+//add theme setup
 function drdev_theme_setup() {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -87,7 +89,36 @@ function drdev_theme_setup() {
 }
 add_action('after_setup_theme', 'drdev_theme_setup');
 
+//scripts admin
+function enqueue_recharge_plan_admin_scripts($hook) {
+    global $post_type;
 
+    // Solo en admin y solo para el CPT 'recharge_plan'
+    if ($hook === 'post.php' || $hook === 'post-new.php') {
+        if ($post_type === 'recharge_plan') {
+            // Media uploader
+            wp_enqueue_media();
+
+            wp_enqueue_script(
+                'recharge-plan-admin-js',
+                get_template_directory_uri() . '/assets/js/admin-scripts.js',
+                array('jquery'),
+                '1.0',
+                true
+            );
+        }
+    }
+}
+add_action('admin_enqueue_scripts', 'enqueue_recharge_plan_admin_scripts');
+
+// upload svg
+function allow_svg_uploads($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_uploads');
+
+//Company data
 function drdevultimate_customize_register($wp_customize) {
     // Sección de datos empresa
     $wp_customize->add_section('company_data_section', [
@@ -127,6 +158,17 @@ function drdevultimate_customize_register($wp_customize) {
         'section'  => 'company_data_section',
         'type'     => 'text',
         'description' => 'Número completo con código país, ej: +34699111222',
+    ]);
+
+    // Horario
+    $wp_customize->add_setting('company_schedule', [
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('company_schedule', [
+        'label'    => __('Horario', 'drdevultimate'),
+        'section'  => 'company_data_section',
+        'type'     => 'text',
     ]);
 
     // Direcciones (5)
@@ -246,42 +288,100 @@ class Accessibility_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 }
 
-function drdev_register_cpt_servicios() {
-  $labels = array(
-    'name'               => 'Servicios',
-    'singular_name'      => 'Servicio',
-    'menu_name'          => 'Servicios',
-    'name_admin_bar'     => 'Servicio',
-    'add_new'            => 'Agregar nuevo',
-    'add_new_item'       => 'Agregar nuevo servicio',
-    'new_item'           => 'Nuevo servicio',
-    'edit_item'          => 'Editar servicio',
-    'view_item'          => 'Ver servicio',
-    'all_items'          => 'Todos los servicios',
-    'search_items'       => 'Buscar servicios',
-    'not_found'          => 'No se encontraron servicios',
-    'not_found_in_trash' => 'No hay servicios en la papelera'
-  );
+function drdev_register_cpt() {
+    register_post_type('faq', [
+        'label' => 'FAQs',
+        'public' => false, 
+        'publicly_queryable' => false, 
+        'show_ui' => true,
+        'supports' => ['title', 'editor'],
+        'menu_icon' => 'dashicons-editor-help',
+        'exclude_from_search' => true,
+        'show_in_nav_menus' => false,
+        'show_in_rest' => false, // Oculta del editor de bloques (si no usás Gutenberg)
+        'rewrite' => false, // No genera URLs reescritas
+        'query_var' => false, // No accesible por ?faq=slug
+    ]);
 
-  $args = array(
-    'labels'             => $labels,
-    'public'             => false, // oculta de Google y del frontend
-    'publicly_queryable' => false, //  evita que se genere una URL accesible
-    'show_ui'            => true,
-    'show_in_menu'       => true,
-    'query_var'          => false,
-    'rewrite'            => false,
-    'capability_type'    => 'post',
-    'has_archive'        => false,
-    'hierarchical'       => false,
-    'menu_position'      => 20,
-    'menu_icon'          => 'dashicons-clipboard',
-    'supports'           => array('title')
-  );
+    register_taxonomy('faq_group', 'faq', [
+    'label' => 'Grupos de FAQ',
+    'hierarchical' => false,
+    'show_ui' => true,
+    'show_in_menu'      => true,
+    'show_admin_column' => true,
+    'public'            => false,         
+    'rewrite'           => false, // No crea URLs para términos
+    'query_var'         => false, // No accesible por ?faq_group=
+    'show_in_rest'      => true, 
+    ]);
 
-  register_post_type('servicio', $args);
+    $labels = array(
+        'name'               => 'Servicios',
+        'singular_name'      => 'Servicio',
+        'menu_name'          => 'Servicios',
+        'name_admin_bar'     => 'Servicio',
+        'add_new'            => 'Agregar nuevo',
+        'add_new_item'       => 'Agregar nuevo servicio',
+        'new_item'           => 'Nuevo servicio',
+        'edit_item'          => 'Editar servicio',
+        'view_item'          => 'Ver servicio',
+        'all_items'          => 'Todos los servicios',
+        'search_items'       => 'Buscar servicios',
+        'not_found'          => 'No se encontraron servicios',
+        'not_found_in_trash' => 'No hay servicios en la papelera'
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => false, // oculta de Google y del frontend
+        'publicly_queryable' => false, //  evita que se genere una URL accesible
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => false,
+        'rewrite'            => false,
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-clipboard',
+        'supports'           => array('title')
+    );
+
+    register_post_type('servicio', $args);
+
+    $recharge = array(
+        'name' => 'Recharge plans',
+        'singular_name' => 'Recharge plan',
+        'add_new' => 'Add New',
+        'add_new_item' => 'Add New Recharge Plan',
+        'edit_item' => 'Edit Recharge Plan',
+        'new_item' => 'New Recharge Plan',
+        'view_item' => 'View Recharge Plan',
+        'search_items' => 'Search Recharge Plans',
+        'not_found' => 'No Recharge Plans found',
+        'menu_name' => 'Recharge Plans',
+    );
+
+    $argsRecharge = array(
+        'labels'             => $recharge,
+        'public'             => false, 
+        'publicly_queryable' => false, 
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => false,
+        'rewrite'            => false,
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-clipboard',
+        'supports'           => array('title')
+    );
+
+    register_post_type('recharge_plan', $argsRecharge);
+
 }
-add_action('init', 'drdev_register_cpt_servicios');
+add_action('init', 'drdev_register_cpt');
 
 function drdev_add_servicio_meta_box() {
   add_meta_box(
@@ -329,35 +429,6 @@ function drdev_save_servicio_meta($post_id) {
 }
 add_action('save_post', 'drdev_save_servicio_meta');
 
-function drdev_register_faq_post_type() {
-    register_post_type('faq', [
-        'label' => 'FAQs',
-        'public' => false, 
-        'publicly_queryable' => false, 
-        'show_ui' => true,
-        'supports' => ['title', 'editor'],
-        'menu_icon' => 'dashicons-editor-help',
-        'exclude_from_search' => true,
-        'show_in_nav_menus' => false,
-        'show_in_rest' => false, // Oculta del editor de bloques (si no usás Gutenberg)
-        'rewrite' => false, // No genera URLs reescritas
-        'query_var' => false, // No accesible por ?faq=slug
-    ]);
-
-    register_taxonomy('faq_group', 'faq', [
-    'label' => 'Grupos de FAQ',
-    'hierarchical' => false,
-    'show_ui' => true,
-    'show_in_menu'      => true,
-    'show_admin_column' => true,
-    'public'            => false,         
-    'rewrite'           => false, // No crea URLs para términos
-    'query_var'         => false, // No accesible por ?faq_group=
-    'show_in_rest'      => true, 
-    ]);
-}
-add_action('init', 'drdev_register_faq_post_type');
-
 require_once get_template_directory() . '/template-parts/faq.php';
 function render_faq_group($group_slug = 'faq-home', $title = 'Preguntas frecuentes') {
     $faqs = get_posts([
@@ -385,3 +456,83 @@ function render_faq_group($group_slug = 'faq-home', $title = 'Preguntas frecuent
 
     faq_component($parsed_faqs, $title);
 }
+
+function add_recharge_plan_metaboxes() {
+    add_meta_box(
+        'recharge_plan_fields',
+        'Recharge Plan Details',
+        'recharge_plan_fields_callback',
+        'recharge_plan',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'add_recharge_plan_metaboxes');
+
+function recharge_plan_fields_callback($post) {
+    // Valores actuales
+    $usd = get_post_meta($post->ID, '_usd', true);
+    $cup = get_post_meta($post->ID, '_cup', true);
+    $datos = get_post_meta($post->ID, '_datos', true);
+    $dias_datos = get_post_meta($post->ID, '_dias_datos', true);
+    $saldo = get_post_meta($post->ID, '_saldo', true);
+    $vigencia_saldo = get_post_meta($post->ID, '_vigencia_saldo', true);
+    $extras_info_vigencia = get_post_meta($post->ID, '_extras_info_vigencia', true);
+    $extras = get_post_meta($post->ID, '_extras', true);
+    $image_id = get_post_meta($post->ID, '_plan_image_id', true);
+    $image_url = $image_id ? wp_get_attachment_url($image_id) : '';
+    $image_invert_id = get_post_meta($post->ID, '_invert_image_id', true);
+    $image_invert_url = $image_invert_id ? wp_get_attachment_url($image_invert_id) : '';
+
+    ?>
+    <label>Monto en USD:</label><br>
+    <input type="text" name="usd" value="<?php echo esc_attr($usd); ?>" /><br><br>
+
+    <label>Equivalente en CUP:</label><br>
+    <input type="number" name="cup" value="<?php echo esc_attr($cup); ?>" /><br><br>
+
+    <label>Datos (MB/GB):</label><br>
+    <input type="text" name="datos" value="<?php echo esc_attr($datos); ?>" /><br><br>
+
+    <label>Días de Vigencia de Datos:</label><br>
+    <input type="number" name="dias_datos" value="<?php echo esc_attr($dias_datos); ?>" /><br><br>
+
+    <label>Extra Info vigencia:</label><br>
+    <textarea name="extras_info_vigencia" rows="4" style="width:100%;"><?php echo esc_textarea($extras_info_vigencia); ?></textarea>
+
+    <label>Saldo Principal:</label><br>
+    <input type="number" name="saldo" value="<?php echo esc_attr($saldo); ?>" /><br><br>
+
+    <label>Vigencia de Saldo (días):</label><br>
+    <input type="number" name="vigencia_saldo" value="<?php echo esc_attr($vigencia_saldo); ?>" /><br><br>
+
+    <label>Extras:</label><br>
+    <textarea name="extras" rows="4" style="width:100%;"><?php echo esc_textarea($extras); ?></textarea>
+
+    <label>Imagen del plan:</label><br>
+    <input type="hidden" name="plan_image_id" id="plan_image_id" value="<?php echo esc_attr($image_id); ?>" />
+    <img id="plan-image-preview" src="<?php echo  esc_url($image_url); ?>" style="max-width: 100%; height: auto;" />
+    <br><input type="button" class="button" id="upload_plan_image" value="Subir imagen" />
+
+    <label>Imagen invertida del plan:</label><br>
+    <input type="hidden" name="invert_image_id" id="invert_image_id" value="<?php echo esc_attr($image_invert_id); ?>" />
+    <img id="invert-image-preview" src="<?php echo  esc_url($image_invert_url); ?>" style="max-width: 100%; height: auto;" />
+    <br><input type="button" class="button" id="upload_invert_image" value="Subir imagen" />
+    <?php
+}
+
+function save_recharge_plan_fields($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['usd'])) update_post_meta($post_id, '_usd', sanitize_text_field($_POST['usd']));
+    if (isset($_POST['cup'])) update_post_meta($post_id, '_cup', intval($_POST['cup']));
+    if (isset($_POST['datos'])) update_post_meta($post_id, '_datos', sanitize_text_field($_POST['datos']));
+    if (isset($_POST['dias_datos'])) update_post_meta($post_id, '_dias_datos', intval($_POST['dias_datos']));
+    if (isset($_POST['saldo'])) update_post_meta($post_id, '_saldo', intval($_POST['saldo']));
+    if (isset($_POST['vigencia_saldo'])) update_post_meta($post_id, '_vigencia_saldo', intval($_POST['vigencia_saldo']));
+    if (isset($_POST['extras_info_vigencia'])) update_post_meta($post_id, '_extras_info_vigencia', sanitize_textarea_field($_POST['extras_info_vigencia']));
+    if (isset($_POST['extras'])) update_post_meta($post_id, '_extras', sanitize_textarea_field($_POST['extras']));
+    if (isset($_POST['plan_image_id'])) update_post_meta($post_id, '_plan_image_id', intval($_POST['plan_image_id']));
+    if (isset($_POST['invert_image_id'])) update_post_meta($post_id, '_invert_image_id', intval($_POST['invert_image_id']));
+}
+add_action('save_post', 'save_recharge_plan_fields');

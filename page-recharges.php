@@ -17,6 +17,10 @@ get_header(); ?>
  <?php 
     get_template_part('template-parts/recharges/section15');
 
+    get_template_part('template-parts/recharges/rechargesPlan');
+
+    get_template_part('template-parts/recharges/contactRecharges');
+
     render_faq_group('home', 'Preguntas frecuentes');
 ?>
 </main>

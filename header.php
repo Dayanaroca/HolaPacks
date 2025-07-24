@@ -114,7 +114,7 @@
         <div class="hidden md:flex items-center gap-8 px-8">
           <div class="flex items-center gap-2">
            <img src="<?php echo esc_url($drdev_assets['phone_icon']); ?>" alt=""  aria-hidden="true" class="h-8 w-8">
-            <a href="tel:<?php echo esc_attr($drdev_assets['phone']); ?>" class="text-primary font-bold text-[12px] font-montserrat hover:underline">
+            <a href="tel:<?php echo esc_attr($drdev_assets['phone']); ?>" class="text-primary font-bold text-[12px]">
               <?php echo esc_attr($drdev_assets['phone']); ?>
             </a>
           </div>

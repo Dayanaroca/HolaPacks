@@ -24,6 +24,7 @@ module.exports = {
       boxShadow: {
         custom: '0px 0px 4px 0px rgba(0, 0, 0, 0.25)',
         advanc: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        blockpr: '0 2.316px 2.316px 0 rgba(0, 0, 0, 0.25)',
       },
     },
   },

@@ -1,4 +1,4 @@
-<section aria-label="oferta-hola-packs" class="w-full px-4 py-12 2xl:py-24 max-w-screen-xl mx-auto">
+<section aria-label="oferta-hola-packs" class="w-full px-4 py-12 lg:py-16 max-w-screen-xl mx-auto">
   <div class="grid grid-cols-1 sm:grid-cols-5 gap-6 items-center">
     
     <!-- Imagen (40%) -->
