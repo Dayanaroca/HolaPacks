@@ -2,64 +2,38 @@
 
 // scripts and styles
 function drdev_enqueue_assets() {
-    wp_enqueue_style('drdev-style', get_template_directory_uri() . '/dist/style.css', [], filemtime(get_template_directory() . '/dist/style.css'));
-    
+    wp_enqueue_style('drdev-style', get_template_directory_uri() . '/dist/style.css', [], filemtime(get_template_directory() . '/dist/style.css'));   
     wp_enqueue_script('drdev-script', get_template_directory_uri() . '/assets/js/scripts.js', [], false, true);
  
+    if (is_front_page()) {
 
-    if(is_front_page() || is_page_template('template-hero.php')) {
-        // CSS
-        wp_enqueue_style(
-            'swiper-css',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
-            array(),
-            '11.0.0'
-        );
-        
-        // JS
+        wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(),'11.0.0' );
+        wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), '11.0.0', true );
+        wp_enqueue_style('intl-tel-input-css', 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css',array(),  '18.1.1' );
+        wp_enqueue_script( 'intl-tel-input-js', 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js', array(), '18.1.1', true);
         wp_enqueue_script(
-            'swiper-js',
-            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
-            array(),
-            '11.0.0',
-            true // true = carga en footer
+            'intl-tel-input-utils',
+            'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js',
+            array('intl-tel-input-js'),
+            '18.1.1',
+            true
         );
 
-       // intl-tel-input CSS
-    wp_enqueue_style(
-        'intl-tel-input-css',
-        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.min.css',
-        array(),
-        '18.1.1'
-    );
-
-    // intl-tel-input JS
-    wp_enqueue_script(
-        'intl-tel-input-js',
-        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js',
-        array(),
-        '18.1.1',
-        true
-    );
-
-    // intl-tel-input utils.js (para validación y formato internacional)
-    wp_enqueue_script(
-        'intl-tel-input-utils',
-        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js',
-        array('intl-tel-input-js'),
-        '18.1.1',
-        true
-    );
-
-    wp_enqueue_style(
-    'intl-fix',
-    get_template_directory_uri() . '/assets/css/intl-fix.css',
-    array('intl-tel-input-css'), 
-    filemtime(get_template_directory() . '/assets/css/intl-fix.css')
-    );
-
-
+        wp_enqueue_style(
+        'intl-fix',
+        get_template_directory_uri() . '/assets/css/intl-fix.css',
+        array('intl-tel-input-css'), 
+        filemtime(get_template_directory() . '/assets/css/intl-fix.css')
+        );
+        wp_enqueue_script('drdev-Intl', get_template_directory_uri() . '/assets/js/intelTel.js', [], null, true);
     }
+
+
+    if(is_page_template('page-outOffices.php')) {
+        wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA0gYMaGfzKHi2dL8HA5qJzKkVk3TbhleA', [], null, true);
+        wp_enqueue_script('drdev-office-map', get_template_directory_uri() . '/assets/js/office-map.js', ['google-maps'], null, true);
+    }
+
 }
 add_action('wp_enqueue_scripts', 'drdev_enqueue_assets');
 
@@ -170,19 +144,6 @@ function drdevultimate_customize_register($wp_customize) {
         'section'  => 'company_data_section',
         'type'     => 'text',
     ]);
-
-    // Direcciones (5)
-    for ($i = 1; $i <= 5; $i++) {
-        $wp_customize->add_setting("company_address_$i", [
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ]);
-        $wp_customize->add_control("company_address_$i", [
-            'label'    => __("Dirección $i", 'drdevultimate'),
-            'section'  => 'company_data_section',
-            'type'     => 'textarea',
-        ]);
-    }
 
     //Social media
     $wp_customize->add_setting('company_tiktok', [
@@ -380,10 +341,44 @@ function drdev_register_cpt() {
 
     register_post_type('recharge_plan', $argsRecharge);
 
+        $oficina = array(
+        'name'               => 'Oficinas',
+        'singular_name'      => 'Oficina',
+        'menu_name'          => 'Oficinas',
+        'name_admin_bar'     => 'Oficina',
+        'add_new'            => 'Agregar nuevo',
+        'add_new_item'       => 'Agregar nueva oficina',
+        'new_item'           => 'Nueva oficina',
+        'edit_item'          => 'Editar oficina',
+        'view_item'          => 'Ver oficina',
+        'all_items'          => 'Todos lss oficina',
+        'search_items'       => 'Buscar oficinas',
+        'not_found'          => 'No se encontraron oficinas',
+        'not_found_in_trash' => 'No hay oficinas en la papelera'
+    );
+
+    $args_oficina = array(
+        'labels'             => $oficina,
+        'public'             => false, // oculta de Google y del frontend
+        'publicly_queryable' => false, //  evita que se genere una URL accesible
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => false,
+        'rewrite'            => false,
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-clipboard',
+        'supports'           => array('title')
+    );
+
+    register_post_type('oficina', $args_oficina);
+
 }
 add_action('init', 'drdev_register_cpt');
 
-function drdev_add_servicio_meta_box() {
+function drdev_add_meta_box() {
   add_meta_box(
     'servicio_meta_box',
     'Detalles del Servicio',
@@ -392,8 +387,18 @@ function drdev_add_servicio_meta_box() {
     'normal',
     'high'
   );
+
+    add_meta_box(
+    'oficina_meta_box',
+    'Detalles de la oficina',
+    'drdev_render_oficina_meta_box',
+    'oficina',
+    'normal',
+    'high'
+  );
+
 }
-add_action('add_meta_boxes', 'drdev_add_servicio_meta_box');
+add_action('add_meta_boxes', 'drdev_add_meta_box');
 
 function drdev_render_servicio_meta_box($post) {
   // Obtener valores actuales
@@ -428,6 +433,58 @@ function drdev_save_servicio_meta($post_id) {
   }
 }
 add_action('save_post', 'drdev_save_servicio_meta');
+
+function drdev_render_oficina_meta_box($post) {
+  $direction = get_post_meta($post->ID, '_office_direction', true);
+  $phone = get_post_meta($post->ID, '_office_phone', true);
+  $ws = get_post_meta($post->ID, '_office_whatsapp', true);
+  $schedlue = get_post_meta($post->ID, '_office_schedlue', true);
+  $lat = get_post_meta($post->ID, '_office_lat', true);
+  $lng = get_post_meta($post->ID, '_office_lng', true);
+
+  echo '<label>Dirección:</label><br>';
+  echo '<input type="text" name="office_direction" value="' . esc_attr($direction) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  echo '<label>Teléfono:</label><br>';
+  echo '<input type="text" name="office_phone" value="' . esc_attr($phone) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  echo '<label>WhatsApp:</label><br>';
+  echo '<input type="text" name="office_whatsapp" value="' . esc_attr($ws) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  echo '<label>Horario:</label><br>';
+  echo '<input type="text" name="office_schedlue" value="' . esc_attr($schedlue) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  echo '<label>Latitud:</label><br>';
+  echo '<input type="text" name="office_lat" value="' . esc_attr($lat) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+  echo '<label>Longitud:</label><br>';
+  echo '<input type="text" name="office_lng" value="' . esc_attr($lng) . '" style="width:100%; margin-bottom: 10px;"><br>';
+
+}
+
+function drdev_save_office_meta($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['office_direction'])) {
+        update_post_meta($post_id, '_office_direction', sanitize_text_field($_POST['office_direction']));
+    }
+    if (isset($_POST['office_phone'])) {
+        update_post_meta($post_id, '_office_phone', sanitize_text_field($_POST['office_phone']));
+    }
+    if (isset($_POST['office_whatsapp'])) {
+        update_post_meta($post_id, '_office_whatsapp', sanitize_textarea_field($_POST['office_whatsapp']));
+    }
+    if (isset($_POST['office_schedlue'])) {
+        update_post_meta($post_id, '_office_schedlue', sanitize_textarea_field($_POST['office_schedlue']));
+    }
+    if (isset($_POST['office_lat'])) {
+    update_post_meta($post_id, '_office_lat', sanitize_text_field($_POST['office_lat']));
+    }
+    if (isset($_POST['office_lng'])) {
+    update_post_meta($post_id, '_office_lng', sanitize_text_field($_POST['office_lng']));
+    }
+}  
+add_action('save_post', 'drdev_save_office_meta');
 
 require_once get_template_directory() . '/template-parts/faq.php';
 function render_faq_group($group_slug = 'faq-home', $title = 'Preguntas frecuentes') {

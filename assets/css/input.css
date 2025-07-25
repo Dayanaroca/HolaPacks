@@ -121,6 +121,9 @@
     .hero-recharges-bg {
          background-image: url('../assets/images/Recharges/bg-section-15.webp');
     }
+     .hero-our-offices {
+         background-image: url('../assets/images/ourOffices/hero-our-offices.webp');
+    }
 
     @media (max-width: 1024px) {
         .hero-bg {
@@ -140,6 +143,9 @@
         }
         .about-home-bg {
          background-image: url('../assets/images/home/about-home-bg-mobile.webp');
+        }
+        .hero-our-offices {
+         background-image: url('../assets/images/ourOffices/hero-our-offices-mobile.webp');
         }
     }
 
